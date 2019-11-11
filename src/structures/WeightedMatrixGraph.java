@@ -1,6 +1,7 @@
 package structures;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -68,7 +69,7 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	}
 
 	@Override
-	public V search(String id) {
+	public V searchVertex(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -89,6 +90,48 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	public boolean areConnected(V v, V u) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<V> bfs(V v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<V> dfs(V v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<V, Double> dijkstra(V v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int[][] floydWarshall() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getVertexSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getIndex(V vertex) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<V> vertexAdjacent(V vertex) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,5 +1,8 @@
 package structures;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * This interface has the basic methods every graph must have without depending on the representation used
  * @author Juan Pablo Herrera
@@ -39,7 +42,7 @@ public interface Graph<V> {
 	 * @param id Identification of the object
 	 * @return Object V with the id
 	 */
-	public V search(String id);
+	public V searchVertex(String id);
 	
 	/**
 	 * Removes am edge from the graph
@@ -63,5 +66,19 @@ public interface Graph<V> {
 	 * @return true/false if the two vertices are connected or not
 	 */
 	public boolean areConnected(V v, V u);
+	
+	public List<V> bfs(V v);
+	
+	public List<V> dfs(V v);
+	
+	public Map<V, Double> dijkstra(V v);
+	
+	public int[][] floydWarshall();
+
+	public int getVertexSize();
+
+	public int getIndex(V vertex);
+
+	public List<V> vertexAdjacent(V vertex);
 	
 }
