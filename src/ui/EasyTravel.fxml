@@ -12,14 +12,80 @@
 <?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="853.0" prefWidth="1026.0" style="-fx-background-color: SNOW; -fx-border-color: BLACK;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="853.0" prefWidth="1026.0" style="-fx-background-color: SNOW; -fx-border-color: BLACK;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.EasyTravelController">
    <bottom>
       <Pane prefHeight="68.0" prefWidth="1024.0" style="-fx-background-color: darkorange; -fx-border-color: black;" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
       <Pane prefHeight="535.0" prefWidth="1024.0" style="-fx-border-color: BLACK; -fx-background-color: darkorange;" BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="1.0" layoutY="196.0" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: white; -fx-border-color: black;" />
+            <Pane fx:id="credits" layoutX="1.0" layoutY="196.0" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: white; -fx-border-color: black;">
+               <children>
+                  <Label layoutX="243.0" layoutY="133.0" prefHeight="297.0" prefWidth="559.0" text="Juan Pablo Herrera&#10;David Alejandro Parra&#10;Cristián Sánchez&#10;" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font name="Anydore" size="66.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" prefHeight="79.0" prefWidth="345.0" text="Desarrolladores:" textAlignment="CENTER">
+                     <font>
+                        <Font name="Anydore" size="66.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" layoutY="460.0" prefHeight="102.0" prefWidth="744.0" text="Algoritmos y Estructuras de datos" textAlignment="CENTER">
+                     <font>
+                        <Font name="Anydore" size="66.0" />
+                     </font>
+                  </Label>
+                  <Line endX="-325.0" endY="350.0" fill="WHITE" layoutX="325.0" layoutY="121.0" startX="697.0" startY="350.0" strokeWidth="2.0" />
+               </children></Pane>
+            <Pane fx:id="instructions" layoutX="1.0" layoutY="196.0" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: white; -fx-border-color: BLACK;">
+               <children>
+                  <Label layoutX="42.0" layoutY="60.0" text="Easy Travel:">
+                     <font>
+                        <Font name="System Bold Italic" size="34.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="27.0" layoutY="171.0" text="Puntos de interés:">
+                     <font>
+                        <Font name="System Bold Italic" size="34.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="27.0" layoutY="273.0" text="Zonas Inconexas:">
+                     <font>
+                        <Font name="System Bold Italic" size="34.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="27.0" layoutY="396.0" text="Calcula mi tiempo:">
+                     <font>
+                        <Font name="System Bold Italic" size="34.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="251.0" layoutY="60.0" text="instrucciones">
+                     <font>
+                        <Font name="System Bold Italic" size="34.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="339.0" layoutY="171.0" text="instrucciones">
+                     <font>
+                        <Font name="System Bold Italic" size="34.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="339.0" layoutY="273.0" text="instrucciones">
+                     <font>
+                        <Font name="System Bold Italic" size="34.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="356.0" layoutY="403.0" text="instrucciones">
+                     <font>
+                        <Font name="System Bold Italic" size="34.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="EasyTravel" layoutX="1.0" layoutY="196.0" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: white; -fx-border-color: BLACK;" />
+            <Pane fx:id="pointsOfInterest" layoutX="1.0" layoutY="196.0" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: white; -fx-border-color: BLACK;" />
+            <Pane fx:id="unconnectedZones" layoutX="1.0" layoutY="196.0" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: white; -fx-border-color: BLACK;" />
+            <Pane fx:id="PaneCalculateTime" layoutX="1.0" layoutY="196.0" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: white; -fx-border-color: BLACK;" />
             <Pane layoutX="1.0" layoutY="11.0">
                <children>
                   <QuadCurve controlX="-89.0" controlY="61.0" endX="644.0" endY="32.0" fill="DARKORANGE" layoutX="264.0" layoutY="68.0" startX="5.0" startY="-19.0" stroke="BLACK" strokeType="INSIDE" />
@@ -30,7 +96,7 @@
                   </Label>
                   <ImageView fitHeight="74.09" fitWidth="1028.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Sin%20título-1.png" />
+                        <Image url="@../../../../Desktop/Sin%20título-1.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="24.0" prefHeight="40.0" prefWidth="87.0" text="Easy" textFill="WHITE">
@@ -60,7 +126,7 @@
                   </Label>
                   <ImageView fitHeight="93.0" fitWidth="119.0" layoutX="567.0" layoutY="101.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Downloads/car.png" />
+                        <Image url="@../../../../Downloads/car.png" />
                      </image>
                   </ImageView>
                   <Line endX="94.0" endY="1.52587890625E-5" fill="WHITE" layoutX="127.0" layoutY="54.0" startX="-112.0" startY="1.52587890625E-5" stroke="WHITE" strokeWidth="2.0" />
@@ -75,12 +141,17 @@
         <menus>
           <Menu mnemonicParsing="false" text="Opciones">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#ActivateEasyTravel" text="Easy Travel" />
+                  <MenuItem mnemonicParsing="false" onAction="#ActivatePointsOfInterest" text="Puntos de Interés" />
+                  <MenuItem mnemonicParsing="false" onAction="#ActivateUnconnectedZones" text="Zonas Inconexas" />
+                  <MenuItem mnemonicParsing="false" onAction="#ActivateCalculateTime" text="Calcula mi tiempo" />
+                  <MenuItem mnemonicParsing="false" onAction="#Exit" text="Salir" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Ayuda">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#ActivateInstructions" text="Instrucciones" />
+                  <MenuItem mnemonicParsing="false" onAction="#ActivateCredits" text="Créditos" />
             </items>
           </Menu>
         </menus>
