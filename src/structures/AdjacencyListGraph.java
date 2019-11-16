@@ -28,24 +28,60 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 
 	@Override
 	public boolean addVertex(V v) {
-		// TODO Auto-generated method stub
-		return false;
+		vertices.put(v, vertices.size());
+		
+		return true;
 	}
 
 	@Override
 	public boolean addEdge(V v, V u) {
-		// TODO Auto-generated method stub
-		return false;
+		int pos = vertices.get(v);
+		List<Duplex<V, Integer>> trans = adjacencyList.get(pos);
+		
+		trans.add(new Duplex<V, Integer>(u, null));
+		
+		if(!isDirected) {
+			pos = vertices.get(u);
+			trans = adjacencyList.get(pos);
+			
+			trans.add(new Duplex<V, Integer>(v, null));
+		}
+		
+		return true;
 	}
 
 	@Override
 	public boolean addEdge(V v, V u, int w) {
-		// TODO Auto-generated method stub
-		return false;
+		int pos = vertices.get(v);
+		List<Duplex<V, Integer>> trans = adjacencyList.get(pos);
+		
+		trans.add(new Duplex<V, Integer>(u, w));
+		
+		if(!isDirected) {
+			pos = vertices.get(u);
+			trans = adjacencyList.get(pos);
+			
+			trans.add(new Duplex<V, Integer>(v, w));
+		}
+		
+		return true;
 	}
 
 	@Override
 	public void removeVertex(V v) {
+		int pos = vertices.get(v);
+		
+		adjacencyList.remove(pos);
+		
+		for(int i=0; i<adjacencyList.size(); i++) {
+			List<Duplex<V, Integer>> trans = adjacencyList.get(i);
+			for(int j=0; j<trans.size(); j++) {
+				Duplex<V, Integer> dupla = trans.get(j);
+				if(dupla.getE1().equals(v)) trans.remove(j);
+			}
+		}
+		
+		vertices.remove(v);
 		
 	}
 

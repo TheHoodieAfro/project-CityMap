@@ -1,5 +1,6 @@
 package structures;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,17 +15,17 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	
 	public final static int DEFAULT_SIZE = 10;
 	
-	private Algorithms alg;
-	
 	/**
 	 * Map that stores the vertices and gives them a unique index
 	 */
-	private Map<V,Integer> Vertex;
+	private Map<V,Integer> vertices;
+	private Map<Integer,V> invVertices;
 	
 	/**
 	 * Weighted matrix used to represent the graph
 	 */
 	private int[][] Weight;
+	private int[][] minPath;
 	
 	/**
 	 * atribute used to represent if the grpah is directed or not
@@ -36,7 +37,8 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	 * @param d directed or not
 	 */
 	public WeightedMatrixGraph(boolean d) {
-		Vertex = new HashMap<V, Integer>();
+		vertices = new HashMap<V, Integer>();
+		invVertices = new HashMap<Integer, V>();
 		Weight = new int[DEFAULT_SIZE][DEFAULT_SIZE];
 		isDirected = d;
 	}
@@ -47,27 +49,41 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	 * @param d directed or not
 	 */
 	public WeightedMatrixGraph(int v, boolean d) {
-		Vertex = new HashMap<V, Integer>();
+		vertices = new HashMap<V, Integer>();
+		invVertices = new HashMap<Integer, V>();
 		Weight = new int[v][v];
 		isDirected = d;
 	}
 
 	@Override
 	public boolean addVertex(V v) {
-		// TODO Auto-generated method stub
-		return false;
+		vertices.put(v, vertices.size());
+		
+		return true;
 	}
 
 	@Override
 	public boolean addEdge(V v, V u) {
-		// TODO Auto-generated method stub
-		return false;
+		int posv = vertices.get(v);
+		int posu = vertices.get(u);
+		
+		Weight[posv][posu] = 1;
+		
+		if(!isDirected) Weight[posu][posv] = 1;
+		
+		return true;
 	}
 
 	@Override
 	public boolean addEdge(V v, V u, int w) {
-		// TODO Auto-generated method stub
-		return false;
+		int posv = vertices.get(v);
+		int posu = vertices.get(u);
+		
+		Weight[posv][posu] = w;
+		
+		if(!isDirected) Weight[posu][posv] = w;
+		
+		return true;
 	}
 
 	@Override
@@ -76,24 +92,30 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 
 	@Override
 	public void removeEdge(V v, V u) {
+		int posv = vertices.get(v);
+		int posu = vertices.get(u);
+		
+		Weight[posv][posu] = Integer.MAX_VALUE;
+		
+		if(!isDirected) Weight[posu][posv] = Integer.MAX_VALUE;
 	}
 
 	@Override
 	public boolean areConnected(V v, V u) {
-		// TODO Auto-generated method stub
-		return false;
+		int posv = vertices.get(v);
+		int posu = vertices.get(u);
+		
+		return (Weight[posv][posu] != Integer.MAX_VALUE && posu != posv)? true : false;
 	}
 
 	@Override
 	public List<V> bfs(V v) {
-		// TODO Auto-generated method stub
-		return null;
+		return (vertices.size() != 0)? Algorithms.bfs(this, invVertices.get(0)) : null;
 	}
 
 	@Override
 	public List<V> dfs(V v) {
-		// TODO Auto-generated method stub
-		return null;
+		return (vertices.size() != 0)? Algorithms.dfs(this, invVertices.get(0)) : null;
 	}
 
 	@Override
@@ -104,38 +126,39 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 
 	@Override
 	public int[][] floydWarshall() {
-		// TODO Auto-generated method stub
-		return null;
+		return (vertices.size() != 0)? Algorithms.floydWarshall(Weight) : null;
 	}
 
 	@Override
 	public int getVertexSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		return vertices.size();
 	}
 
 	@Override
 	public int getIndex(V vertex) {
-		// TODO Auto-generated method stub
-		return 0;
+		return vertices.get(vertex);
 	}
 
 	@Override
 	public List<V> vertexAdjacent(V vertex) {
-		// TODO Auto-generated method stub
-		return null;
+		List<V> adjacent = new ArrayList<V>();
+		int pos = vertices.get(vertex);
+		
+		for(int i=0; i<Weight.length; i++) {
+			if(Weight[pos][i] != Integer.MAX_VALUE && pos != i) adjacent.add(invVertices.get(i));
+		}
+		
+		return adjacent;
 	}
 
 	@Override
 	public boolean isDirected() {
-		// TODO Auto-generated method stub
-		return false;
+		return isDirected;
 	}
 
 	@Override
 	public Map<V, Integer> getVertices() {
-		// TODO Auto-generated method stub
-		return null;
+		return vertices;
 	}
 
 }
