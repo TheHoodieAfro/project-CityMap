@@ -38,18 +38,11 @@ public interface Graph<V> {
 	public boolean addEdge(V v, V u, int w);
 	
 	/**
-	 * Gets the object V with the id used
-	 * @param id Identification of the object
-	 * @return Object V with the id
-	 */
-	public V searchVertex(String id);
-	
-	/**
 	 * Removes am edge from the graph
 	 * @param v Edge to be removed
 	 * @return The removed edge
 	 */
-	public V removeVertex(V v);
+	public void removeVertex(V v);
 	
 	/**
 	 * Removes the edge between two vertices
@@ -57,7 +50,7 @@ public interface Graph<V> {
 	 * @param u final vertex
 	 * @return true/false if the edge was succesfully removed
 	 */
-	public boolean removeEdge(V v, V u);
+	public void removeEdge(V v, V u);
 	
 	/**
 	 * Tells if two vertices are connected
@@ -66,6 +59,8 @@ public interface Graph<V> {
 	 * @return true/false if the two vertices are connected or not
 	 */
 	public boolean areConnected(V v, V u);
+	
+	public boolean isDirected();
 	
 	public List<V> bfs(V v);
 	
@@ -76,6 +71,8 @@ public interface Graph<V> {
 	public int[][] floydWarshall();
 
 	public int getVertexSize();
+	
+	public Map<V, Integer> getVertices();
 
 	public int getIndex(V vertex);
 

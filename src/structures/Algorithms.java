@@ -19,12 +19,12 @@ public class Algorithms {
 		return traversal(g, v, new LinkedList<V>());
 	}
 	
-	private static <V> List<V> traversal(Graph<V> g, V v, Stack ds){
+	private static <V> List<V> traversal(Graph<V> g, V v, Stack<V> ds){
 		List<V> trav = new ArrayList<>();
 		//Invariant: Each algorithm adds the given element first. 
 
 		V vertex = v;
-		ds.add(vertex);
+		ds.push(vertex);
 		
 		boolean[] visited = new boolean[g.getVertexSize()];
 		
@@ -45,7 +45,7 @@ public class Algorithms {
 		return trav;
 	}
 	
-	private static <V> List<V> traversal(Graph<V> g, V v, Queue ds){
+	private static <V> List<V> traversal(Graph<V> g, V v, Queue<V> ds){
 		List<V> trav = new ArrayList<>();
 		//Invariant: Each algorithm adds the given element first. 
 
@@ -75,8 +75,31 @@ public class Algorithms {
 		return null; //TODO Create method
 	}
 	
-	public static <V> int[][] floydWarshall(Graph<V> g){
-		return null;
+	public static <V> int[][] floydWarshall(int[][] w){
+		int n = w.length;
+		int[][] D = w;
+		int v = 0;
+		
+		for(int k=0; k<n; k++) {
+			for(int i=0; i<n; i++) {
+				for(int j=0; j<n; j++) {
+					
+					if(j != k || i != k) {
+						if(D[i][k] != Integer.MAX_VALUE && D[k][j] != Integer.MAX_VALUE) {
+							
+							v = D[i][k] + D[k][j];
+							
+							if(D[i][j] > v) D[i][j] = v;
+							
+						}
+						
+					}
+					
+				}
+			}
+		}
+		
+		return D;
 	}
 	
 }

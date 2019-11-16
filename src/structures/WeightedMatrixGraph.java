@@ -14,6 +14,8 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	
 	public final static int DEFAULT_SIZE = 10;
 	
+	private Algorithms alg;
+	
 	/**
 	 * Map that stores the vertices and gives them a unique index
 	 */
@@ -69,21 +71,11 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	}
 
 	@Override
-	public V searchVertex(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void removeVertex(V v) {
 	}
 
 	@Override
-	public V removeVertex(V v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean removeEdge(V v, V u) {
-		// TODO Auto-generated method stub
-		return false;
+	public void removeEdge(V v, V u) {
 	}
 
 	@Override
@@ -130,6 +122,18 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 
 	@Override
 	public List<V> vertexAdjacent(V vertex) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isDirected() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Map<V, Integer> getVertices() {
 		// TODO Auto-generated method stub
 		return null;
 	}
