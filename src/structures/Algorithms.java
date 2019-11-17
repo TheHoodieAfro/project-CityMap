@@ -71,9 +71,44 @@ public class Algorithms {
 		return trav;
 	}
 	
-	public static <V> Map<V, Double> dijkstra(Graph<V> g, V v){
-		return null; //TODO Create method
+	public static <V> void dijkstra(int[][] g, int v){
+		int[] dis = new int[g.length];
+		boolean[] vis = new boolean[g.length];
+		
+		
+		for (int i=0; i < dis.length; i++) { 
+            dis[i] = Integer.MAX_VALUE; 
+        }
+		dis[v] = 0;
+		
+		for (int i=0; i<v-1; i++) {  
+            int u = minIndex(dis, vis); 
+  
+            vis[u] = true; 
+
+            for (int j=0; j<v; j++) {
+                if (!vis[v] && g[u][v] != 0 && dis[u] != Integer.MAX_VALUE && dis[u] + g[u][v] < dis[v]) 
+                   dis[v] = dis[u] + g[u][v]; 
+            }
+        }
+		
+		
 	}
+	
+	private static int minIndex(int[] dis, boolean[] vis) 
+    { 
+        // Initialize min value 
+        int min = Integer.MAX_VALUE;
+        int indx = -1; 
+  
+        for (int i=0; i<dis.length; i++) 
+            if (vis[i] == false && dis[i] <= min) { 
+                min = dis[i]; 
+                indx = i; 
+            } 
+  
+        return indx; 
+    }
 	
 	public static <V> int[][] floydWarshall(int[][] w){
 		int n = w.length;
