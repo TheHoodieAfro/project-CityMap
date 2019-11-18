@@ -71,7 +71,7 @@ public class Algorithms {
 		return trav;
 	}
 	
-	public static <V> void dijkstra(int[][] g, int v){
+	public static <V> int[] dijkstra(int[][] g, int v){
 		int[] dis = new int[g.length];
 		boolean[] vis = new boolean[g.length];
 		
@@ -92,6 +92,7 @@ public class Algorithms {
             }
         }
 		
+		return dis;
 		
 	}
 	

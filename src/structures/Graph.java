@@ -66,7 +66,7 @@ public interface Graph<V> {
 	
 	public List<V> dfs(V v);
 	
-	public Map<V, Double> dijkstra(V v);
+	public int[] dijkstra(V v);
 	
 	public int[][] floydWarshall();
 

@@ -147,9 +147,8 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	}
 
 	@Override
-	public Map<V, Double> dijkstra(V v) {
-		// TODO Auto-generated method stub
-		return null;
+	public int[] dijkstra(V v) {
+		return (vertices.size() != 0)? Algorithms.dijkstra(weightedMatrix, 0) : null;
 	}
 
 	@Override
