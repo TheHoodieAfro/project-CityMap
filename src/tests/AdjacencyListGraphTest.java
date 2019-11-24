@@ -9,7 +9,7 @@ import structures.WeightedMatrixGraph;
 class AdjacencyListGraphTest {
 
 	public void setupScenary() {
-		WeightedMatrixGraph WG = new  WeightedMatrixGraph(4, false)
+		WeightedMatrixGraph<?> WG = new  WeightedMatrixGraph(4, false);
 	}
 
 }

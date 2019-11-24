@@ -160,4 +160,14 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 		return vertices;
 	}
 
+	@Override
+	public int[][] Kruskal(int[][] p) {
+		return (vertices.size() != 0)? Algorithms.Kruskal(Weight) : null;
+	}
+
+	@Override
+	public int[] Prim(int[][] p) {
+		return (vertices.size() != 0)? Algorithms.prim(Weight) : null;
+	}
+
 }

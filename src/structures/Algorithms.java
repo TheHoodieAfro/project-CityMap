@@ -1,10 +1,9 @@
 package structures;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Stack;
 
 import java.util.Queue;
@@ -136,6 +135,112 @@ public class Algorithms {
 		}
 		
 		return D;
+	}
+	
+	public static int[][] Kruskal(int[][] pesos){
+		
+		DisjointSet<Integer> set = new DisjointSet<>();
+		
+		int[][] MST = new int[pesos.length][pesos.length];
+
+		for(int i = 0; i < pesos.length; i++) {
+			set.makeSet(i);
+		}
+		
+		//-----------------------------------------------------------------
+		class obj {
+			int A;
+			int B;
+			int P;			
+			obj(int a, int b, int p){
+				A = a;
+				B = b;
+				P = p;
+			}
+			int getA() {
+				return A;
+			}	
+			int getB() {
+				return B;
+			}
+			int getP() {
+				return P;
+			}
+		}
+		//-----------------------------------------------------------------
+		
+		ArrayList<obj> aristas = new ArrayList<>();		
+		for(int i = 0; i < pesos.length;  i++) {
+			for(int j = 0; j < pesos.length; j++) {
+				int peso = pesos[i][j];
+				if(peso > 0 && peso < Integer.MAX_VALUE) {
+					obj o = new obj(i, j, peso);
+					aristas.add(o);
+				}
+			}
+		}	
+		
+		Comparator<obj> comparador = new Comparator<obj>() {
+			@Override
+			public int compare(obj a, obj b) {
+				if(a.getP() > b.getP()) {
+					return  1;
+				} else if (a.getP() < b.getP()) {
+					return -1;
+				}else {
+					return 0;
+				}
+			}
+		};	
+		aristas.sort(comparador);	
+		
+		for(int i = 0; i < aristas.size(); i++) {
+			obj arista = aristas.get(i);
+			if(set.findSet(arista.getA()) != set.findSet(arista.getB())) {
+				set.union(arista.getA(), arista.getB());
+				MST[arista.getA()][arista.getB()] = arista.getP();
+				MST[arista.getB()][arista.getA()] = arista.getP();
+			}
+		}		
+		return MST;
+	}
+	
+	public static int minVertex(int[] weight, boolean[] inMst, int vertices){
+		int minValue = Integer.MAX_VALUE;
+		int minVertex = -1;
+		for (int i = 0; i < vertices; i++) {
+			if(inMst[i] == false && weight[i] < minValue){
+				minValue = weight[i];
+				minVertex = i;
+			}
+		}
+		return minVertex;
+	}
+				
+	public static int[] prim(int[][] matrix){
+		int[] mst = new int[matrix.length];
+		int[] weight = new int[matrix.length];
+		boolean[] inMst = new boolean[matrix.length];
+		
+		for (int i = 0; i < matrix.length; i++) {
+			weight[i] = Integer.MAX_VALUE;
+		}		
+		
+		weight[0] = 0;
+		mst[0] = -1;			
+		
+		for (int i = 0; i < matrix.length-1; i++) {
+			int u = minVertex(weight, inMst, matrix.length);
+			inMst[u] = true;
+			for (int j = 0; j < matrix.length; j++) {
+				if(matrix[u][j] != 0 && inMst[j] == false && matrix[u][j] < weight[j]){
+					mst[j] = u;
+					weight[j] = matrix[u][j];
+				}
+			}
+		}
+		
+		return weight;
 	}
 	
 }

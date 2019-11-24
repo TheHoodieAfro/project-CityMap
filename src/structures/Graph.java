@@ -69,7 +69,11 @@ public interface Graph<V> {
 	public int[] dijkstra(V v);
 	
 	public int[][] floydWarshall();
-
+	
+	public int[][] Kruskal(int[][] p);
+	
+	public int[] Prim(int[][] p);
+	
 	public int getVertexSize();
 	
 	public Map<V, Integer> getVertices();
